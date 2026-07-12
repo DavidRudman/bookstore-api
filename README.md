@@ -36,7 +36,7 @@
 
   1. Clone the repo:
      ```bash
-     git clone <your-repo-url>
+     git clone https://github.com/DavidRudman/bookstore-api
      cd Bookstore
   2. The default connection string (in Bookstore.PublicAPI/appsettings.json) points at LocalDB:
   Server=(localdb)\MSSQLLocalDB;Database=BookstoreDb;Trusted_Connection=True;TrustServerCertificate=True
@@ -54,13 +54,13 @@
 
   Demo users:
 
-  ┌──────────┬────────────┬───────────┬────────────────────┐
-  │ Username │  Password  │   Role    │       Access       │
-  ├──────────┼────────────┼───────────┼────────────────────┤
-  │ reader   │ Reader123! │ Read      │ GET endpoints only │
-  ├──────────┼────────────┼───────────┼────────────────────┤
-  │ writer   │ Writer123! │ ReadWrite │ All endpoints      │
-  └──────────┴────────────┴───────────┴────────────────────┘
+  Read Role:
+    Username: reader
+    Password: Reader123!
+
+  Read and write role:
+    Username: writer
+    Password: Writer123!
 
   Flow:
   1. POST /api/auth/login with { "username": "writer", "password": "Writer123!" } → returns a token.
@@ -70,25 +70,18 @@
   ▎ The demo credentials are hardcoded for evaluation only.
 
   Endpoints
-
-  ┌────────┬───────────────────────┬──────────────────┬──────────────────────────────────────────────────────────┐
-  │ Method │         Route         │       Role       │                          Notes                           │
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ POST   │ /api/auth/login       │ anonymous        │ Returns a JWT                                            │
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ GET    │ /api/books            │ Read / ReadWrite │ All books (Title, Authors, Genres, Avg Rating) — EF Core │
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ GET    │ /api/books/top10      │ Read / ReadWrite │ Top 10 by average rating — raw SQL / Dapper              │
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ POST   │ /api/books            │ ReadWrite        │ Create a book                                            │
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ PUT    │ /api/books/{id}/price │ ReadWrite        │ Update price only                                        │
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ DELETE │ /api/books/{id}       │ ReadWrite        │ Delete a book (reviews cascade; authors/genres kept)     |    
-  │        |                       |                  | NOTE: it would be better if it was soft-deletion         |     
-  ├────────┼───────────────────────┼──────────────────┼──────────────────────────────────────────────────────────┤
-  │ POST   │ /api/import           │ ReadWrite        │ Manually trigger the import (also runs hourly)           │
-  └────────┴───────────────────────┴──────────────────┴──────────────────────────────────────────────────────────┘
+      Method  Route                     Role               Notes
+      ------  ------------------------  -----------------  ---------------------------------------------
+      POST    /api/auth/login           anonymous          Returns a JWT
+      GET     /api/books                Read / ReadWrite   All books (Title, Authors, Genres, Avg
+                                                            Rating) — EF Core
+      GET     /api/books/top10          Read / ReadWrite   Top 10 by average rating — raw SQL / Dapper
+      POST    /api/books                ReadWrite          Create a book
+      PUT     /api/books/{id}/price     ReadWrite          Update price only
+      DELETE  /api/books/{id}           ReadWrite          Delete a book (reviews cascade; authors/
+                                                            genres kept)
+      POST    /api/import               ReadWrite          Manually trigger the import (also runs
+                                                            hourly)
 
   Scheduled Import
 
