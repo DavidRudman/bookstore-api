@@ -45,8 +45,8 @@
   dotnet run --project Bookstore.PublicAPI
   3. On startup the app automatically applies migrations and seeds sample data — no manual DB setup needed.
   4. Open the docs in your browser:
-    - Swagger UI: https://localhost:<port>/swagger
-    - Scalar: https://localhost:<port>/scalar/v1
+    - Swagger UI: https://localhost:44356/swagger
+    - Scalar: https://localhost:44356/scalar/v1
 
   Authentication
 
