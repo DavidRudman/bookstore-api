@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Bookstore.Application/Bookstore.Application.csproj" />
+  <Project Path="Bookstore.Data/Bookstore.Data.csproj" />
+  <Project Path="Bookstore.PublicAPI/Bookstore.PublicAPI.csproj" />
+  <Project Path="Bookstore.Tests/Bookstore.Tests.csproj" />
+</Solution>
