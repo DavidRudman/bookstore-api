@@ -69,7 +69,7 @@
 
   ▎ The demo credentials are hardcoded for evaluation only.
 
-  Endpoints
+  ## Endpoints
       Method  Route                     Role               Notes
       ------  ------------------------  -----------------  ---------------------------------------------
       POST    /api/auth/login           anonymous          Returns a JWT
